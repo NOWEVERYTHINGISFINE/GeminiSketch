@@ -14,20 +14,20 @@ struct Edge {
 // Define the bucket structure
 struct Bucket {
     std::pair<int, int> vx; // <s, d>
-    int ec; // 边计数
-    int CF; // 标记
-    std::vector<Edge> list; // 边列表
-    int GT; // 时间戳
-    Bucket* bqp; // 桶队列指针
+    int ec; // edge count
+    int CF; // flag
+    std::vector<Edge> list; // edge list
+    int GT; // timestamp
+    Bucket* bqp; // bucket queue pointer
     Bucket() : ec(0), CF(0), GT(0), bqp(nullptr) {}
 };
 
 // Define the working matrix structure
 struct WorkingMatrix {
-    std::vector<std::vector<Bucket>> G; // 矩阵
-    Bucket* HP; // 头指针
-    Bucket* MP; // 中间指针
-    Bucket* TP; // 尾指针
+    std::vector<std::vector<Bucket>> G; // matrix
+    Bucket* HP; // head pointer
+    Bucket* MP; // middle pointer
+    Bucket* TP; // tail pointer
     WorkingMatrix(int size) : HP(nullptr), MP(nullptr), TP(nullptr) {
         G.resize(size, std::vector<Bucket>(size));
     }
@@ -40,7 +40,7 @@ int H(int x) {
     return XXH32(&x, sizeof(x), 0) % 10;
 }
 
-// 结点查询算法
+// Vertex query algorithm
 // Define the value of g, which can be adjusted according to actual conditions
 const int g = 1;
 
@@ -126,7 +126,7 @@ void insertion(WorkingMatrix& matrix, Edge e) {
         }
     } else {
         matrix.G[i][j].ec += 1;
-        // 其他处理...
+        // Other processing...
     }
 }
 
@@ -140,7 +140,7 @@ void eliminateExpiredEdges(WorkingMatrix& matrix, int Te) {
                 if (WP->ec == 0) {
                     Bucket* NB = WP;
                     WP = WP->bqp;
-                    // 从虚拟桶队列中移除NB...
+                    // Remove NB from virtual bucket queue...
                 } else {
                     WP->list.erase(WP->list.begin());
                 }
@@ -150,7 +150,7 @@ void eliminateExpiredEdges(WorkingMatrix& matrix, int Te) {
 
         while (!matrix.MP->list.empty() && matrix.MP->list.front().time <= Te) {
             Bucket* S = matrix.MP;
-            // 处理S...
+            // Process S...
         }
     }
 }

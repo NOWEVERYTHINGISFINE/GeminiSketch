@@ -17,21 +17,21 @@ struct Edge {
 // Define the bucket structure
 struct Bucket {
     std::pair<int, int> vx; // <s, d>
-    int ec; // 边计数
-    int CF; // 标记
-    std::vector<Edge> list; // 边列表
-    int GT; // 时间戳
-    Bucket* bqp; // 桶队列指针
+    int ec; // edge count
+    int CF; // flag
+    std::vector<Edge> list; // edge list
+    int GT; // timestamp
+    Bucket* bqp; // bucket queue pointer
     Bucket() : ec(0), CF(0), GT(0), bqp(nullptr) {}
 };
 
 // Define the working matrix structure
 struct WorkingMatrix {
-    std::vector<std::vector<Bucket>> G; // 矩阵
-    int WS; // 工作状态
-    Bucket* HP; // 头指针
-    Bucket* MP; // 中间指针
-    Bucket* TP; // 尾指针
+    std::vector<std::vector<Bucket>> G; // matrix
+    int WS; // working status
+    Bucket* HP; // head pointer
+    Bucket* MP; // middle pointer
+    Bucket* TP; // tail pointer
     WorkingMatrix(int size) : WS(0), HP(nullptr), MP(nullptr), TP(nullptr) {
         G.resize(size, std::vector<Bucket>(size));
     }

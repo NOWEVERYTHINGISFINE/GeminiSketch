@@ -1,13 +1,19 @@
 CXX = g++
 CFLAGS = -lpthread -static-libstdc++ -std=c++11
 
-all: main
+all: main experiment
 
 main: main.o Gemini_elimination.o Gemini_without_switch.o GeminiSketch_Algorithm.o
 	$(CXX) -o main main.o Gemini_elimination.o Gemini_without_switch.o GeminiSketch_Algorithm.o $(CFLAGS)
 
+experiment: experiment.o Gemini_elimination.o Gemini_without_switch.o GeminiSketch_Algorithm.o
+	$(CXX) -o experiment experiment.o Gemini_elimination.o Gemini_without_switch.o GeminiSketch_Algorithm.o $(CFLAGS)
+
 main.o: main.cpp Gemini  elimination.h Gemini without switch.h GeminiSketch_Algorithm.h
 	$(CXX) -o main.o -c main.cpp
+
+experiment.o: experiment.cpp GeminiSketch_Algorithm.h
+	$(CXX) -o experiment.o -c experiment.cpp
 
 Gemini_elimination.o: Gemini  elimination.cpp Gemini  elimination.h
 	$(CXX) -o Gemini_elimination.o -c Gemini  elimination.cpp
@@ -20,4 +26,4 @@ GeminiSketch_Algorithm.o: GeminiSketch_Algorithm.cpp GeminiSketch_Algorithm.h
 
 .PHONY: clean
 clean:
-	-$(RM) main main.o Gemini_elimination.o Gemini_without_switch.o GeminiSketch_Algorithm.o
+	-$(RM) main experiment main.o experiment.o Gemini_elimination.o Gemini_without_switch.o GeminiSketch_Algorithm.o

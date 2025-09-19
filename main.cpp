@@ -5,7 +5,7 @@
 
 int main() {
     struct timeval start, end;
-    // 记录开始时间
+    // Record start time
     gettimeofday(&start, NULL);
 
     // Initialize the working matrix
@@ -41,7 +41,7 @@ int main() {
         std::cout << "Reachability query failed!" << std::endl;
     }
 
-    // 示例：创建子图
+    // Example: Create a subgraph
     std::vector<Edge> subgraph;
     subgraph.push_back(Edge(std::make_pair(1, 2), 10, 1));
 
@@ -53,13 +53,13 @@ int main() {
         std::cout << "Subgraph query failed!" << std::endl;
     }
 
-    // 记录结束时间
+    // Record end time
     gettimeofday(&end, NULL);
-    // 计算平均哈希链长度
+    // Calculate average hash chain length
 float avgChainLength = averageHashChainLength(matrix);
-std::cout << "平均哈希链长度: " << avgChainLength << std::endl;
+std::cout << "Average hash chain length: " << avgChainLength << std::endl;
 
-// 计算耗时（微秒）
+// Calculate elapsed time (microseconds)
     long long elapsed_time = (end.tv_sec - start.tv_sec) * 1000000LL + (end.tv_usec - start.tv_usec);
     std::cout << "Query time: " << elapsed_time << " microseconds" << std::endl;
     std::cout << "Throughput: " << 1.0 / (elapsed_time / 1000000.0) << " queries per second" << std::endl;
