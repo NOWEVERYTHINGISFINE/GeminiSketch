@@ -104,7 +104,6 @@ void fullScanElimination(WorkingMatrix& matrix, int Te) {
             while (!bucket.list.empty() && bucket.list.front().time <= Te) {
                 bucket.ec -= 1;
                 if (bucket.ec == 0) {
-                    // 重置桶状态
                     bucket.vx = std::make_pair(0, 0);
                     bucket.CF = 0;
                     bucket.GT = 0;
@@ -124,7 +123,6 @@ void lazyElimination(WorkingMatrix& matrix, Edge e, int Te) {
     while (!bucket.list.empty() && bucket.list.front().time <= Te) {
         bucket.ec -= 1;
         if (bucket.ec == 0) {
-            // 重置桶状态
             bucket.vx = std::make_pair(0, 0);
             bucket.CF = 0;
             bucket.GT = 0;
@@ -174,7 +172,7 @@ int subgraphQuery(const WorkingMatrix& matrix, const std::vector<Edge>& subgraph
             }
         }
         if (!found) {
-            return -1; // 表示子图未完全匹配
+            return -1; 
         }
     }
 
@@ -211,10 +209,10 @@ int main() {
     Edge e(std::make_pair(1, 2), 10, 1);
     insertion(matrix, e);
 
-    // 使用不同的剔除策略
     rollingOutElimination(matrix, 2);
     fullScanElimination(matrix, 2);
     lazyElimination(matrix, e, 2);
 
     return 0;
+
 }
