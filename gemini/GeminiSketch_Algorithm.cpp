@@ -228,7 +228,6 @@ bool reachabilityQuery(const WorkingMatrix& matrix, std::pair<int, int> startEnd
 }
 
 
-// 子图查询算法
 int subgraphQuery(const WorkingMatrix& matrix, const std::vector<Edge>& subgraph, int t_b, int t_e) {
     std::vector<Edge> activeEdges = findActiveEdges(matrix, t_b, t_e);
     int totalWeight = 0;
@@ -243,7 +242,7 @@ int subgraphQuery(const WorkingMatrix& matrix, const std::vector<Edge>& subgraph
             }
         }
         if (!found) {
-            return -1; // 表示子图未完全匹配
+            return -1; 
         }
     }
 
@@ -256,7 +255,7 @@ int main() {
     insertion(matrix, e);
     eliminateExpiredEdges(matrix, 2);
 
-    // 测试查询算法
+
     std::vector<Edge> activeEdges = findActiveEdges(matrix, 0, 3);
     std::cout << "Active edges count: " << activeEdges.size() << std::endl;
 
@@ -267,7 +266,7 @@ int main() {
     std::cout << "Reachability: " << (reachable ? "Yes" : "No") << std::endl;
 
 
-    // 测试结点查询算法
+
     bool vertexFound = vertexQuery(matrix, 1, 0, 3);
     std::cout << "Vertex found: " << (vertexFound ? "Yes" : "No") << std::endl;
 
@@ -277,7 +276,7 @@ int main() {
     int outgoingCount = outgoingEdgeCount(matrix, 1, 0, 3);
     std::cout << "Outgoing edge count: " << outgoingCount << std::endl;
 
-    // 测试子图查询算法
+
     std::vector<Edge> subgraph = {Edge(std::make_pair(1, 2), 10, 1)};
     int subgraphWeight = subgraphQuery(matrix, subgraph, 0, 3);
     if (subgraphWeight == -1) {
@@ -287,4 +286,5 @@ int main() {
     }
 
     return 0;
+
 }
